@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //final NoopHostnameVerifier a = NoopHostnameVerifier.INSTANCE;
+        //new SSLConnectionSocketFactory(null);
         try {
             Object obj = Class.forName("core.plain.Demo").newInstance();
             Method method = obj.getClass().getMethod("getLocation", null);
