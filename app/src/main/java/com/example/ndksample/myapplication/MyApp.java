@@ -6,9 +6,9 @@ import android.util.Log;
 
 import java.lang.reflect.Method;
 
-import static android.content.ContentValues.TAG;
-
 public class MyApp extends Application{
+
+    static public final String TAG = "clojure";
 
     @Override
     public void onCreate() {
