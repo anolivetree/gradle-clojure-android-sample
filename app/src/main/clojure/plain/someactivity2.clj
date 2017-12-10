@@ -2,7 +2,9 @@
   (:import
     (android.support.v7.app AppCompatActivity)
     (android.util Log)
-    (com.example.ndksample.myapplication.R$layout))
+    (com.example.ndksample.myapplication.R$id)
+    (com.example.ndksample.myapplication.R$layout)
+    (android.os Handler))
   (:require [org.httpkit.client :as http])
 
   (:gen-class
@@ -19,8 +21,14 @@
   (.superOnCreate this bundle)
   (.setContentView this com.example.ndksample.myapplication.R$layout/activity_main)
 
-  (.start (Thread. (fn []
-                     (let [data (fetch "http://www.yahoo.co.jp")]
-                       (Log/i "clojure" (:body @data))))
+  (.. this
+      (findViewById com.example.ndksample.myapplication.R$id/getButton)
+      (setOnClickListener (reify android.view.View$OnClickListener
+                            (onClick [this v]
+                              (Log/i "clojure" "hello")))))
 
-                   )))
+  (let [tv (.findViewById this com.example.ndksample.myapplication.R$id/text)
+        handler (Handler.)]
+    (.start (Thread. (fn []
+                       (let [data (:body @(fetch "http://www.yahoo.co.jp"))]
+                         (.post handler #(.setText tv data))))))))
