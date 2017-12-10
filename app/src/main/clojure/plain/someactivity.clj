@@ -18,9 +18,6 @@
 (defn some-onCreate [^plain.someactivity.MyActivity this ^android.os.Bundle bundle]
     (.superOnCreate this bundle)
     (.setContentView this com.example.ndksample.myapplication.R$layout/activity_main)
-    ;;(future (let [data (fetch "http://www.yahoo.co.jp")]
-    ;;                      (Log/i "clojure" (str data))))
-
 
   (.start (Thread. (fn []
             (let [data (fetch "http://www.yahoo.co.jp")]
