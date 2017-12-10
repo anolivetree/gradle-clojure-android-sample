@@ -1,7 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: "gradle-clojure.clojure"
 
+apply plugin: 'com.android.application'
+//apply plugin: "gradle-clojure.clojure"
+apply plugin: "com.github.anolivetree.clojure-android"
 apply plugin: "com.dorongold.task-tree"
+
+
 
 android {
     compileSdkVersion 26
@@ -54,15 +57,26 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     implementation "org.clojure-android:clojure:1.7.0-r4"
-    //compile "org.clojure-android:clojure:1.7.0-r4"
+    compileOnly "org.clojure-android:clojure:1.7.0-r4"
     //compileOnly 'org.clojure:clojure:1.8.0'
-    compileOnly 'org.clojure:clojure:1.7.0'
+    //compileOnly 'org.clojure:clojure:1.7.0'
 
     //compile "clj-http:clj-http:3.7.0"
     compile "http-kit:http-kit:2.2.0"
+
+    compile 'org.clojure:tools.nrepl:0.2.10', {
+        exclude group: 'org.clojure', module: 'clojure'
+    }
+
 }
 
 //compileClojure {
 //    options.aotCompile = true
 //}
+
+clojure {
+    aotCompile = true
+    //directLinking = true
+}
+
 

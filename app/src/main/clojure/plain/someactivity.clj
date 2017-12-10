@@ -15,7 +15,7 @@
 (defn fetch [url]
   (http/get url))
 
-(defn some-onCreate [this bundle]
+(defn some-onCreate [^plain.someactivity.MyActivity this ^android.os.Bundle bundle]
     (.superOnCreate this bundle)
     (.setContentView this com.example.ndksample.myapplication.R$layout/activity_main)
     ;;(future (let [data (fetch "http://www.yahoo.co.jp")]
